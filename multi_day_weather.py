@@ -1,11 +1,14 @@
 import requests
 import csv
-from datetime import datetime, timezone, timedelta
+import json
+import os
 
-cities = [
-    {"name": "Ranchi", "lat": 23.3432, "lon": 85.3094},
-    {"name": "Ramgarh", "lat": 23.6303, "lon": 85.5216},
-]
+DATA_FOLDER = "data_generated"
+os.makedirs(DATA_FOLDER, exist_ok=True)
+
+with open("cities.json") as f:
+    cities = json.load(f)
+
 
 def get_weather_for_cities():
     weather_api_url = "https://api.open-meteo.com/v1/forecast"
@@ -51,6 +54,7 @@ def get_weather_for_cities():
 
     return all_weather_data
 
+
 def show_weather_data(weather_data):
     print("\n" + "=" * 60)
     print("                WEATHER REPORT")
@@ -65,8 +69,12 @@ def show_weather_data(weather_data):
             hum = city["humidity"][i]
             print(f"{time} | {temp}°C | {hum}%")
 
+
 def save_to_csv_file(weather_data, filename="7day_forecast.csv"):
-    with open(filename, "w", newline="", encoding="utf-8") as csv_file:
+    filepath = os.path.join(DATA_FOLDER, filename)
+    with open(
+        filepath, "w", newline="", encoding="utf-8"
+    ) as csv_file:  # CHANGE to filepath
         writer = csv.writer(csv_file)
         writer.writerow(["City", "Time", "Temperature_C", "Humidity_%"])
 
@@ -81,15 +89,16 @@ def save_to_csv_file(weather_data, filename="7day_forecast.csv"):
                     ]
                 )
 
-    print("✅ Saved to weather_data.csv")
+    print(f"✅ Saved to {filepath}")  # CHANGE THIS
 
-if __name__ == "__main__":
+
+def main():
     print("\n" + "=" * 60)
     print("     WELCOME TO THE WEATHER DATA SCRAPER")
     print("=" * 60)
 
     weather_info = get_weather_for_cities()
-    
+
     if weather_info:
         show_weather_data(weather_info)
         save_to_csv_file(weather_info)
@@ -97,5 +106,9 @@ if __name__ == "__main__":
     else:
         print("\n❌ Sorry, couldn't get any weather data!")
         print("   Please check your internet connection and try again.")
-    
+
     print("\nThanks for using the Weather Scraper!")
+
+
+if __name__ == "__main__":
+    main()
