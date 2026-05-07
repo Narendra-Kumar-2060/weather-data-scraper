@@ -85,15 +85,22 @@ for city in cities:
         elif weather_code in [95, 96, 99]:
             m_icon = "bolt"
             m_color = "darkred"
-        elif temp > 35:
-            m_icon = "sun-o"
-            m_color = "red"
-        elif humidity > 80:
-            m_icon = "tint"
-            m_color = "blue"
-        elif temp < 0:
-            m_icon = "snowflake-o"
-            m_color = "lightblue"
+
+        elif weather_code in [0, 1, 2, 3]:
+            if humidity > 90:
+                m_icon = "smog"
+                m_color = "gray"
+            elif humidity > 80:
+                m_icon = "tint"
+                m_color = "blue"
+            elif temp > 35:
+                m_icon = "sun-o"
+                m_color = "red"
+            elif temp < 0:
+                m_icon = "snowflake-o"
+                m_color = "lightblue"
+            else:
+                m_icon = weather_icon
         else:
             m_icon = weather_icon
 
@@ -127,7 +134,7 @@ title_html = """
 </div>
 """
 m.get_root().html.add_child(folium.Element(title_html))
-output_path = os.path.join(DATA_FOLDER, "weather_map.html")  # ADD THIS
-m.save(output_path)  # CHANGE to output_path
-print(f"✅ Successfully generated {output_path}")  # CHANGE THIS
+output_path = os.path.join(DATA_FOLDER, "weather_map.html")
+m.save(output_path)
+print(f"✅ Successfully generated {output_path}")
 print(f"   Open '{output_path}' in your web browser to view the interactive map!")

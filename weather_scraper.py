@@ -173,7 +173,7 @@ def show_weather_report(weather_data):
 
 def save_to_csv_file(weather_data, filename="current_weather.csv"):
     filepath = os.path.join(DATA_FOLDER, filename)
-    with open(filepath, "w", newline="", encoding="utf-8") as csv_file:  # CHANGE THIS
+    with open(filepath, "w", newline="", encoding="utf-8") as csv_file:
         column_names = [
             "city",
             "temperature_celsius",
@@ -216,7 +216,7 @@ def save_to_csv_file(weather_data, filename="current_weather.csv"):
 
             writer.writerow(row_data)
 
-    print(f"\n✅ Weather data saved to {filepath}")  # CHANGE THIS
+    print(f"\n✅ Weather data saved to {filepath}")
     print("   You can open this file with Excel or any text editor")
 
 

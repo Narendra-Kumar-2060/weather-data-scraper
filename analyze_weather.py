@@ -43,8 +43,8 @@ def create_current_weather_table(dbname="weather.db", csvfile="current_weather.c
 
 
 def create_7day_forecast_table(dbname="weather.db", csvfile="7day_forecast.csv"):
-    csv_path = os.path.join(DATA_FOLDER, csvfile)  # ADD THIS
-    db_path = os.path.join(DATA_FOLDER, dbname)  # ADD THIS
+    csv_path = os.path.join(DATA_FOLDER, csvfile)
+    db_path = os.path.join(DATA_FOLDER, dbname)
 
     if not os.path.exists(csv_path):
         print(f"Warning: {csv_path} not found. Skipping...")
@@ -69,7 +69,7 @@ def create_7day_forecast_table(dbname="weather.db", csvfile="7day_forecast.csv")
 
 
 def current_data(dbname="weather.db"):
-    db_path = os.path.join(DATA_FOLDER, dbname)  # ADD THIS
+    db_path = os.path.join(DATA_FOLDER, dbname)
     con = sqlite3.connect(db_path)
     cur = con.cursor()
 
@@ -111,7 +111,7 @@ def current_data(dbname="weather.db"):
 
 
 def forecast_analysis(dbname="weather.db"):
-    db_path = os.path.join(DATA_FOLDER, dbname)  # ADD THIS
+    db_path = os.path.join(DATA_FOLDER, dbname)
 
     con = sqlite3.connect(db_path)
     cur = con.cursor()
@@ -149,7 +149,7 @@ def forecast_analysis(dbname="weather.db"):
 
 
 def reset_database(dbname="weather.db"):
-    db_path = os.path.join(DATA_FOLDER, dbname)  # ADD THIS
+    db_path = os.path.join(DATA_FOLDER, dbname)
 
     if os.path.exists(db_path):
         os.remove(db_path)

@@ -72,9 +72,7 @@ def show_weather_data(weather_data):
 
 def save_to_csv_file(weather_data, filename="7day_forecast.csv"):
     filepath = os.path.join(DATA_FOLDER, filename)
-    with open(
-        filepath, "w", newline="", encoding="utf-8"
-    ) as csv_file:  # CHANGE to filepath
+    with open(filepath, "w", newline="", encoding="utf-8") as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(["City", "Time", "Temperature_C", "Humidity_%"])
 
@@ -89,7 +87,7 @@ def save_to_csv_file(weather_data, filename="7day_forecast.csv"):
                     ]
                 )
 
-    print(f"✅ Saved to {filepath}")  # CHANGE THIS
+    print(f"✅ Saved to {filepath}")
 
 
 def main():
