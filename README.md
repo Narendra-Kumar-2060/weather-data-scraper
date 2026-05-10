@@ -48,7 +48,7 @@ A complete weather data pipeline that fetches real-time weather data from Open-M
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/weather-pipeline.git
+git clone https://github.com/Narendra-Kumar-2060/weather-data-scraper.git
 cd weather-pipeline
 
 # Install dependencies
